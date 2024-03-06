@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Orangie",
+    "type": "cat",
+    "age": 3,
+    "weight": 10,
+    "image": "https://awl.org.au/resources/hero/_964x542_crop_center-center_100_line/cat-stray-dirty.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Whiskers",
+    "type": "cat",
+    "age": 2,
+    "weight": 8,
+    "image": "https://www.thespruce.com/thmb/PrfluQWFB8RhXABxIUeN5nNHrIo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/discourage-feral-cats-386479-hero-50eeb16535844e75853d52720baeaec5.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Fido",
+    "type": "dog",
+    "age": 5,
+    "weight": 20,
+    "image": "https://www.spcai.org/wp-content/uploads/2020/02/Oo-ee.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Rover",
+    "type": "dog",
+    "age": 3,
+    "weight": 15,
+    "image": "https://puccicafe.com/wp-content/uploads/2021/08/Train-a-Stray-Dog-PUCCI-Cafe.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Thumper",
+    "type": "cat",
+    "age": 1,
+    "weight": 0.5,
+    "image": "https://live.staticflickr.com/2216/2245205664_dec4c73d4e_c.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Bubbles",
+    "type": "dog",
+    "age": 2,
+    "weight": 0.3,
+    "image": "https://images.tribuneindia.com/cms/gall_content/2019/7/2019_7$largeimg15_Monday_2019_185050690.jpg"
+  }
+]

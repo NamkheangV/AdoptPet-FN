@@ -1,4 +1,7 @@
+import 'package:adoptpet/buttomMenu.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       width: double.maxFinite,
       height: double.maxFinite,
       decoration: BoxDecoration(
@@ -37,9 +40,15 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 10,
           ),
+
+          // Welcome
           Text(
             'Welcome Back!',
-            style: TextStyle(fontSize: 35),
+            style: GoogleFonts.shantellSans(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
           ),
 
           // Form
@@ -48,71 +57,78 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 // ID
-                Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  shadowColor: Colors.black,
-                  borderRadius: BorderRadius.circular(35),
-                  child: TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: 'EMAIL',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(35),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      prefixIcon: const Icon(Icons.email),
-                      prefixIconConstraints: const BoxConstraints(
-                        minWidth: 80,
-                      ),
+                TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'EMAIL',
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(35),
+                      borderSide: BorderSide.none,
                     ),
-                    validator: (value) => value!.isEmpty
-                        ? 'Please enter your email'
-                        : !value.contains('@')
-                            ? 'Email is invalid'
-                            : null,
+                    filled: true,
+                    prefixIcon: const Icon(Icons.email),
+                    prefixIconConstraints: const BoxConstraints(
+                      minWidth: 80,
+                    ),
                   ),
+                  validator: (value) => value!.isEmpty
+                      ? 'Please enter your email'
+                      : !value.contains('@')
+                          ? 'Email is invalid'
+                          : null,
                 ),
-
                 const SizedBox(
                   height: 20,
                 ),
 
                 // Password
-                Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  shadowColor: Colors.black,
-                  borderRadius: BorderRadius.circular(35),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'PASSWORD',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(35),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      prefixIcon: const Icon(Icons.lock),
-                      prefixIconConstraints: const BoxConstraints(
-                        minWidth: 80,
-                      ),
+                TextFormField(
+                  controller: _passwordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'PASSWORD',
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(35),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    prefixIcon: const Icon(Icons.lock),
+                    prefixIconConstraints: const BoxConstraints(
+                      minWidth: 80,
                     ),
                   ),
+                  validator: (value) => value!.isEmpty
+                      ? 'Please enter your password'
+                      : value.length < 6
+                          ? 'Password must be at least 6 characters'
+                          : null,
                 ),
+
                 const SizedBox(
                   height: 40,
                 ),
 
                 // Button
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      final email = _emailController.text;
+                      final password = _passwordController.text;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Email: $email, Password: $password',
+                              style: GoogleFonts.notoSans(
+                                color: Colors.white,
+                              )),
+                        ),
+                      );
+                      Get.to(() => const MyMenu());
+                    }
+                  },
                   child: const Text(
                     'LOGIN',
                     style: TextStyle(
@@ -122,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 56, 56, 56),
+                    backgroundColor: const Color.fromARGB(255, 56, 56, 56),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(35),
                     ),
@@ -142,13 +158,22 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       children: [
                         Checkbox(value: false, onChanged: (value) {}),
-                        Text('Remember me'),
+                        Text(
+                          'Remember me',
+                          style: GoogleFonts.notoSans(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                          ),
+                        ),
                       ],
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
+                      child: Text(
                         'Forgot Password?',
+                        style: GoogleFonts.notoSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -161,13 +186,24 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Don\'t have an account?'),
+                    Text(
+                      'Don\'t have an account?',
+                      style: GoogleFonts.notoSans(
+                        fontSize: 18,
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed('/register');
                       },
-                      child: const Text(
+                      child: Text(
                         'Register',
+                        style: GoogleFonts.notoSans(
+                          color: const Color.fromARGB(255, 18, 0, 118),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
